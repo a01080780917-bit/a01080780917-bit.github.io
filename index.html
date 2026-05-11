@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>아이언맨 핑거스냅</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>눈사람</title>
 
   <style>
     *{
@@ -16,266 +16,281 @@
       width:100vw;
       height:100vh;
       overflow:hidden;
-      background:
-        radial-gradient(circle at center, #3b0a0a 0%, #120202 45%, #000 100%);
       display:flex;
       justify-content:center;
       align-items:center;
-      font-family:Arial, sans-serif;
+      background:linear-gradient(to bottom,#87ceeb 0%, #dff6ff 55%, #ffffff 100%);
+      font-family:Arial,sans-serif;
+    }
+
+    /* 눈 내리기 */
+    .snow{
+      position:absolute;
+      width:8px;
+      height:8px;
+      background:white;
+      border-radius:50%;
+      opacity:0.9;
+      animation:fall linear infinite;
+    }
+
+    @keyframes fall{
+      from{
+        transform:translateY(-100vh);
+      }
+      to{
+        transform:translateY(100vh);
+      }
     }
 
     .scene{
       position:relative;
-      width:700px;
-      height:700px;
+      width:500px;
+      height:650px;
     }
 
-    /* 글로우 */
-    .energy{
+    /* 눈사람 몸 */
+    .snowman{
       position:absolute;
-      width:320px;
-      height:320px;
-      border-radius:50%;
-      background:
-        radial-gradient(circle,
-        rgba(0,255,255,0.95) 0%,
-        rgba(0,170,255,0.5) 35%,
-        rgba(0,0,0,0) 70%);
-      top:210px;
-      left:190px;
-      animation:pulse 2s infinite ease-in-out;
-      filter:blur(8px);
+      left:50%;
+      transform:translateX(-50%);
+      bottom:60px;
     }
 
-    @keyframes pulse{
-      0%,100%{
-        transform:scale(1);
-        opacity:0.9;
-      }
-      50%{
-        transform:scale(1.15);
-        opacity:1;
-      }
-    }
-
-    /* 헬멧 */
-    .helmet{
-      position:absolute;
-      width:240px;
-      height:280px;
-      background:linear-gradient(to bottom,#d11,#700);
-      border-radius:120px 120px 90px 90px;
-      left:230px;
-      top:90px;
-      border:8px solid #ffcc55;
-      box-shadow:0 0 30px rgba(255,80,0,.4);
-    }
-
-    .face{
-      position:absolute;
-      width:140px;
-      height:180px;
-      background:#f3d29b;
-      left:50px;
-      top:55px;
-      border-radius:70px 70px 55px 55px;
-    }
-
-    .eye{
-      position:absolute;
-      width:38px;
-      height:12px;
-      background:#9ffcff;
-      top:75px;
-      box-shadow:0 0 15px cyan;
-    }
-
-    .eye.left{ left:32px; transform:rotate(-10deg); }
-    .eye.right{ right:32px; transform:rotate(10deg); }
-
-    /* 몸통 */
-    .body{
-      position:absolute;
-      width:300px;
+    .body-bottom{
+      width:260px;
       height:260px;
-      background:linear-gradient(to bottom,#c00,#550000);
-      left:200px;
-      top:320px;
-      border-radius:40px;
-      border:6px solid #ffcc55;
-    }
-
-    /* 아크 리액터 */
-    .reactor{
-      position:absolute;
-      width:90px;
-      height:90px;
+      background:white;
       border-radius:50%;
-      background:
-        radial-gradient(circle,#fff 0%,#8ff 25%,#0cf 60%,#024 100%);
-      top:70px;
-      left:105px;
+      border:4px solid #ddd;
+      position:relative;
       box-shadow:
-        0 0 20px cyan,
-        0 0 50px rgba(0,255,255,.8);
-      animation:reactorGlow 1.8s infinite;
+        inset -15px -10px 25px rgba(0,0,0,0.08);
     }
 
-    @keyframes reactorGlow{
-      0%,100%{
-        transform:scale(1);
-      }
-      50%{
-        transform:scale(1.08);
-      }
+    .body-middle{
+      width:190px;
+      height:190px;
+      background:white;
+      border-radius:50%;
+      border:4px solid #ddd;
+      position:absolute;
+      left:35px;
+      top:-145px;
+      box-shadow:
+        inset -10px -10px 20px rgba(0,0,0,0.07);
     }
+
+    .head{
+      width:140px;
+      height:140px;
+      background:white;
+      border-radius:50%;
+      border:4px solid #ddd;
+      position:absolute;
+      left:25px;
+      top:-120px;
+      box-shadow:
+        inset -8px -8px 15px rgba(0,0,0,0.06);
+    }
+
+    /* 눈 */
+    .eye{
+      width:12px;
+      height:12px;
+      background:#222;
+      border-radius:50%;
+      position:absolute;
+      top:48px;
+    }
+
+    .eye.left{
+      left:38px;
+    }
+
+    .eye.right{
+      right:38px;
+    }
+
+    /* 코 */
+    .nose{
+      position:absolute;
+      top:62px;
+      left:63px;
+      width:0;
+      height:0;
+      border-top:10px solid transparent;
+      border-bottom:10px solid transparent;
+      border-left:40px solid orange;
+      transform:rotate(3deg);
+    }
+
+    /* 입 */
+    .mouth{
+      position:absolute;
+      width:60px;
+      height:25px;
+      border-bottom:4px solid #444;
+      border-radius:0 0 50px 50px;
+      left:38px;
+      top:88px;
+    }
+
+    /* 단추 */
+    .button{
+      width:16px;
+      height:16px;
+      background:#222;
+      border-radius:50%;
+      position:absolute;
+      left:87px;
+    }
+
+    .b1{ top:40px; }
+    .b2{ top:80px; }
+    .b3{ top:120px; }
 
     /* 팔 */
     .arm{
       position:absolute;
-      width:170px;
-      height:38px;
-      background:linear-gradient(to right,#d00,#700);
-      top:400px;
-      border-radius:25px;
-      border:4px solid #ffcc55;
-      transform-origin:left center;
+      width:120px;
+      height:6px;
+      background:#6b4423;
+      top:60px;
+      border-radius:10px;
     }
 
     .arm.left{
-      left:80px;
-      transform:rotate(20deg);
+      left:-100px;
+      transform:rotate(-20deg);
     }
 
     .arm.right{
-      right:70px;
-      transform:rotate(-28deg);
+      right:-100px;
+      transform:rotate(20deg);
     }
 
-    /* 손 */
-    .hand{
+    /* 모자 */
+    .hat-top{
       position:absolute;
-      width:95px;
-      height:95px;
-      background:#c11;
-      border:4px solid #ffcc55;
-      border-radius:30px;
-      top:-28px;
-      right:-25px;
+      width:90px;
+      height:90px;
+      background:#111;
+      top:-78px;
+      left:25px;
+      border-radius:8px 8px 0 0;
     }
 
-    /* 핑거스냅 손가락 */
-    .finger{
+    .hat-brim{
       position:absolute;
-      background:#ffcc55;
+      width:130px;
+      height:16px;
+      background:#111;
+      top:5px;
+      left:5px;
+      border-radius:10px;
+    }
+
+    /* 목도리 */
+    .scarf{
+      position:absolute;
+      width:120px;
+      height:22px;
+      background:#d62828;
       border-radius:12px;
+      top:10px;
+      left:35px;
     }
 
-    .thumb{
+    .scarf-tail{
+      position:absolute;
       width:24px;
-      height:60px;
-      right:12px;
-      top:28px;
-      transform:rotate(35deg);
+      height:90px;
+      background:#d62828;
+      left:95px;
+      top:15px;
+      border-radius:0 0 12px 12px;
     }
 
-    .index{
-      width:20px;
-      height:70px;
-      right:38px;
-      top:-10px;
-      transform:rotate(-10deg);
-    }
-
-    .middle{
-      width:18px;
-      height:62px;
-      right:58px;
-      top:0;
-      transform:rotate(5deg);
-    }
-
-    /* 스파크 */
-    .spark{
+    /* 바닥 눈 */
+    .ground{
       position:absolute;
-      width:8px;
-      height:8px;
-      border-radius:50%;
+      width:100%;
+      height:120px;
       background:white;
-      box-shadow:0 0 15px cyan;
-      animation:float 3s infinite linear;
+      bottom:0;
+      border-top:4px solid #e8f7ff;
     }
 
-    @keyframes float{
-      from{
-        transform:translateY(0) scale(1);
-        opacity:1;
-      }
-      to{
-        transform:translateY(-250px) scale(0);
-        opacity:0;
-      }
-    }
-
-    .quote{
+    .title{
       position:absolute;
-      bottom:30px;
+      top:25px;
       width:100%;
       text-align:center;
-      color:#fff;
-      font-size:38px;
-      letter-spacing:3px;
-      text-shadow:0 0 15px red;
+      color:white;
+      font-size:42px;
       font-weight:bold;
+      text-shadow:0 0 12px rgba(0,0,0,0.35);
+      letter-spacing:3px;
     }
 
   </style>
 </head>
 <body>
 
+  <!-- 눈 -->
+  <div class="snow" style="left:5%; animation-duration:7s;"></div>
+  <div class="snow" style="left:15%; animation-duration:10s;"></div>
+  <div class="snow" style="left:28%; animation-duration:6s;"></div>
+  <div class="snow" style="left:40%; animation-duration:8s;"></div>
+  <div class="snow" style="left:52%; animation-duration:11s;"></div>
+  <div class="snow" style="left:63%; animation-duration:7s;"></div>
+  <div class="snow" style="left:74%; animation-duration:9s;"></div>
+  <div class="snow" style="left:88%; animation-duration:6s;"></div>
+
   <div class="scene">
 
-    <div class="energy"></div>
+    <div class="title">☃ WINTER SNOWMAN ☃</div>
 
-    <!-- 헬멧 -->
-    <div class="helmet">
-      <div class="face">
-        <div class="eye left"></div>
-        <div class="eye right"></div>
+    <div class="snowman">
+
+      <div class="body-bottom">
+
+        <div class="body-middle">
+
+          <div class="scarf"></div>
+          <div class="scarf-tail"></div>
+
+          <div class="arm left"></div>
+          <div class="arm right"></div>
+
+          <div class="button b1"></div>
+          <div class="button b2"></div>
+          <div class="button b3"></div>
+
+          <div class="head">
+
+            <div class="hat-top"></div>
+            <div class="hat-brim"></div>
+
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+
+            <div class="nose"></div>
+
+            <div class="mouth"></div>
+
+          </div>
+
+        </div>
+
       </div>
+
     </div>
 
-    <!-- 몸 -->
-    <div class="body">
-      <div class="reactor"></div>
-    </div>
-
-    <!-- 왼팔 -->
-    <div class="arm left"></div>
-
-    <!-- 오른팔 + 핑거스냅 -->
-    <div class="arm right">
-      <div class="hand">
-        <div class="finger thumb"></div>
-        <div class="finger index"></div>
-        <div class="finger middle"></div>
-      </div>
-    </div>
-
-    <!-- 스파크 -->
-    <div class="spark" style="left:320px; top:320px; animation-delay:0s;"></div>
-    <div class="spark" style="left:350px; top:300px; animation-delay:0.5s;"></div>
-    <div class="spark" style="left:390px; top:350px; animation-delay:1s;"></div>
-    <div class="spark" style="left:280px; top:340px; animation-delay:1.5s;"></div>
-    <div class="spark" style="left:430px; top:310px; animation-delay:2s;"></div>
-
-    <div class="quote">
-      I am Iron Man.
-    </div>
+    <div class="ground"></div>
 
   </div>
 
-</body>
-</html>
 </body>
 </html>
