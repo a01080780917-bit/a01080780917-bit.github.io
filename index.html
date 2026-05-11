@@ -1,89 +1,281 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>우산 그림</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아이언맨 핑거스냅</title>
+
   <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(#87ceeb, #dff6ff);
-      overflow: hidden;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
 
-    .umbrella {
-      position: relative;
-      width: 300px;
-      height: 300px;
-    }
-
-    /* 우산 윗부분 */
-    .top {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 300px;
-      height: 150px;
-      background: crimson;
-      border-radius: 150px 150px 0 0;
-      overflow: hidden;
-    }
-
-    /* 물결 아래쪽 */
-    .top::after {
-      content: "";
-      position: absolute;
-      bottom: -25px;
-      left: 0;
-      width: 300px;
-      height: 50px;
+    body{
+      width:100vw;
+      height:100vh;
+      overflow:hidden;
       background:
-        radial-gradient(circle at 25px 0, transparent 25px, crimson 26px),
-        radial-gradient(circle at 75px 0, transparent 25px, crimson 26px),
-        radial-gradient(circle at 125px 0, transparent 25px, crimson 26px),
-        radial-gradient(circle at 175px 0, transparent 25px, crimson 26px),
-        radial-gradient(circle at 225px 0, transparent 25px, crimson 26px),
-        radial-gradient(circle at 275px 0, transparent 25px, crimson 26px);
-      background-size: 50px 50px;
+        radial-gradient(circle at center, #3b0a0a 0%, #120202 45%, #000 100%);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-family:Arial, sans-serif;
     }
 
-    /* 손잡이 */
-    .handle {
-      position: absolute;
-      top: 150px;
-      left: 145px;
-      width: 10px;
-      height: 120px;
-      background: #333;
-      border-radius: 5px;
+    .scene{
+      position:relative;
+      width:700px;
+      height:700px;
     }
 
-    /* 손잡이 끝 */
-    .hook {
-      position: absolute;
-      top: 245px;
-      left: 120px;
-      width: 40px;
-      height: 40px;
-      border: 10px solid #333;
-      border-top: none;
-      border-right: none;
-      border-radius: 0 0 0 40px;
-      transform: rotate(-45deg);
+    /* 글로우 */
+    .energy{
+      position:absolute;
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      background:
+        radial-gradient(circle,
+        rgba(0,255,255,0.95) 0%,
+        rgba(0,170,255,0.5) 35%,
+        rgba(0,0,0,0) 70%);
+      top:210px;
+      left:190px;
+      animation:pulse 2s infinite ease-in-out;
+      filter:blur(8px);
     }
+
+    @keyframes pulse{
+      0%,100%{
+        transform:scale(1);
+        opacity:0.9;
+      }
+      50%{
+        transform:scale(1.15);
+        opacity:1;
+      }
+    }
+
+    /* 헬멧 */
+    .helmet{
+      position:absolute;
+      width:240px;
+      height:280px;
+      background:linear-gradient(to bottom,#d11,#700);
+      border-radius:120px 120px 90px 90px;
+      left:230px;
+      top:90px;
+      border:8px solid #ffcc55;
+      box-shadow:0 0 30px rgba(255,80,0,.4);
+    }
+
+    .face{
+      position:absolute;
+      width:140px;
+      height:180px;
+      background:#f3d29b;
+      left:50px;
+      top:55px;
+      border-radius:70px 70px 55px 55px;
+    }
+
+    .eye{
+      position:absolute;
+      width:38px;
+      height:12px;
+      background:#9ffcff;
+      top:75px;
+      box-shadow:0 0 15px cyan;
+    }
+
+    .eye.left{ left:32px; transform:rotate(-10deg); }
+    .eye.right{ right:32px; transform:rotate(10deg); }
+
+    /* 몸통 */
+    .body{
+      position:absolute;
+      width:300px;
+      height:260px;
+      background:linear-gradient(to bottom,#c00,#550000);
+      left:200px;
+      top:320px;
+      border-radius:40px;
+      border:6px solid #ffcc55;
+    }
+
+    /* 아크 리액터 */
+    .reactor{
+      position:absolute;
+      width:90px;
+      height:90px;
+      border-radius:50%;
+      background:
+        radial-gradient(circle,#fff 0%,#8ff 25%,#0cf 60%,#024 100%);
+      top:70px;
+      left:105px;
+      box-shadow:
+        0 0 20px cyan,
+        0 0 50px rgba(0,255,255,.8);
+      animation:reactorGlow 1.8s infinite;
+    }
+
+    @keyframes reactorGlow{
+      0%,100%{
+        transform:scale(1);
+      }
+      50%{
+        transform:scale(1.08);
+      }
+    }
+
+    /* 팔 */
+    .arm{
+      position:absolute;
+      width:170px;
+      height:38px;
+      background:linear-gradient(to right,#d00,#700);
+      top:400px;
+      border-radius:25px;
+      border:4px solid #ffcc55;
+      transform-origin:left center;
+    }
+
+    .arm.left{
+      left:80px;
+      transform:rotate(20deg);
+    }
+
+    .arm.right{
+      right:70px;
+      transform:rotate(-28deg);
+    }
+
+    /* 손 */
+    .hand{
+      position:absolute;
+      width:95px;
+      height:95px;
+      background:#c11;
+      border:4px solid #ffcc55;
+      border-radius:30px;
+      top:-28px;
+      right:-25px;
+    }
+
+    /* 핑거스냅 손가락 */
+    .finger{
+      position:absolute;
+      background:#ffcc55;
+      border-radius:12px;
+    }
+
+    .thumb{
+      width:24px;
+      height:60px;
+      right:12px;
+      top:28px;
+      transform:rotate(35deg);
+    }
+
+    .index{
+      width:20px;
+      height:70px;
+      right:38px;
+      top:-10px;
+      transform:rotate(-10deg);
+    }
+
+    .middle{
+      width:18px;
+      height:62px;
+      right:58px;
+      top:0;
+      transform:rotate(5deg);
+    }
+
+    /* 스파크 */
+    .spark{
+      position:absolute;
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:white;
+      box-shadow:0 0 15px cyan;
+      animation:float 3s infinite linear;
+    }
+
+    @keyframes float{
+      from{
+        transform:translateY(0) scale(1);
+        opacity:1;
+      }
+      to{
+        transform:translateY(-250px) scale(0);
+        opacity:0;
+      }
+    }
+
+    .quote{
+      position:absolute;
+      bottom:30px;
+      width:100%;
+      text-align:center;
+      color:#fff;
+      font-size:38px;
+      letter-spacing:3px;
+      text-shadow:0 0 15px red;
+      font-weight:bold;
+    }
+
   </style>
 </head>
 <body>
 
-  <div class="umbrella">
-    <div class="top"></div>
-    <div class="handle"></div>
-    <div class="hook"></div>
+  <div class="scene">
+
+    <div class="energy"></div>
+
+    <!-- 헬멧 -->
+    <div class="helmet">
+      <div class="face">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+      </div>
+    </div>
+
+    <!-- 몸 -->
+    <div class="body">
+      <div class="reactor"></div>
+    </div>
+
+    <!-- 왼팔 -->
+    <div class="arm left"></div>
+
+    <!-- 오른팔 + 핑거스냅 -->
+    <div class="arm right">
+      <div class="hand">
+        <div class="finger thumb"></div>
+        <div class="finger index"></div>
+        <div class="finger middle"></div>
+      </div>
+    </div>
+
+    <!-- 스파크 -->
+    <div class="spark" style="left:320px; top:320px; animation-delay:0s;"></div>
+    <div class="spark" style="left:350px; top:300px; animation-delay:0.5s;"></div>
+    <div class="spark" style="left:390px; top:350px; animation-delay:1s;"></div>
+    <div class="spark" style="left:280px; top:340px; animation-delay:1.5s;"></div>
+    <div class="spark" style="left:430px; top:310px; animation-delay:2s;"></div>
+
+    <div class="quote">
+      I am Iron Man.
+    </div>
+
   </div>
 
+</body>
+</html>
 </body>
 </html>
