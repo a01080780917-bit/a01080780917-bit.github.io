@@ -1,11 +1,89 @@
-<html>
-  <head>
-   <title>
-    my home
-   </title>  
-  </head>
-   <body>
-    hello, welcome to my homepage
-     my name is Eun jungwon
-   </body>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>우산 그림</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(#87ceeb, #dff6ff);
+      overflow: hidden;
+    }
+
+    .umbrella {
+      position: relative;
+      width: 300px;
+      height: 300px;
+    }
+
+    /* 우산 윗부분 */
+    .top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 150px;
+      background: crimson;
+      border-radius: 150px 150px 0 0;
+      overflow: hidden;
+    }
+
+    /* 물결 아래쪽 */
+    .top::after {
+      content: "";
+      position: absolute;
+      bottom: -25px;
+      left: 0;
+      width: 300px;
+      height: 50px;
+      background:
+        radial-gradient(circle at 25px 0, transparent 25px, crimson 26px),
+        radial-gradient(circle at 75px 0, transparent 25px, crimson 26px),
+        radial-gradient(circle at 125px 0, transparent 25px, crimson 26px),
+        radial-gradient(circle at 175px 0, transparent 25px, crimson 26px),
+        radial-gradient(circle at 225px 0, transparent 25px, crimson 26px),
+        radial-gradient(circle at 275px 0, transparent 25px, crimson 26px);
+      background-size: 50px 50px;
+    }
+
+    /* 손잡이 */
+    .handle {
+      position: absolute;
+      top: 150px;
+      left: 145px;
+      width: 10px;
+      height: 120px;
+      background: #333;
+      border-radius: 5px;
+    }
+
+    /* 손잡이 끝 */
+    .hook {
+      position: absolute;
+      top: 245px;
+      left: 120px;
+      width: 40px;
+      height: 40px;
+      border: 10px solid #333;
+      border-top: none;
+      border-right: none;
+      border-radius: 0 0 0 40px;
+      transform: rotate(-45deg);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="umbrella">
+    <div class="top"></div>
+    <div class="handle"></div>
+    <div class="hook"></div>
+  </div>
+
+</body>
 </html>
